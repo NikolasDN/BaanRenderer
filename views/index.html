@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Express</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <h1>Express test</h1>
+  <p>Welcome to <%= title %></p>
+  <form method="post" enctype="multipart/form-data" action="/upload/">
+    <fieldset>
+      <p>Image:<input type="file" name="image"></p>
+      <p><input type="submit" value="upload"></p>
+    </fieldset>
+  </form>
+  <%- svg %>
+</body>
+
+</html>

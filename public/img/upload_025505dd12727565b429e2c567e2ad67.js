@@ -1,6 +1,7 @@
 
 
 var express = require('express');
+var bodyParser = require('body-parser'); //connects bodyParsing middleware
 var formidable = require('formidable');
 var path = require('path');
 var fs =require('fs-extra');    //File System-needed for renaming file etc
@@ -22,9 +23,11 @@ app.locals.ENV_DEVELOPMENT = env == 'development';
 var cons = require('consolidate');
 
 // view engine setup
-app.engine('html', require('ejs').renderFile);
+app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
