@@ -4,6 +4,7 @@ var path = require('path');
 var fs = require('fs');
 var formidable = require("formidable");
 var util = require('util');
+var svgHelper = require('../services/svgHelper').svgHelper;
 var router = express.Router();
 
 
@@ -34,11 +35,14 @@ router.post('/upload', function(req, res, next) {
       console.log("file type: "+JSON.stringify(files.image.type));
       console.log("astModifiedDate: "+JSON.stringify(files.image.lastModifiedDate));
 
+      var helper = new svgHelper();
+      helper.addPath();
 
-      fs.readFile(files.image.path, function(err, content)
-      {
-        res.render('index', { title: 'Express', svg: content });  
-      });
+      // fs.readFile(files.image.path, function(err, content)
+      // {
+      //   res.render('index', { title: 'Express', svg: content });  
+      // });
+      res.render('index', { title: 'Express', svg: helper.getSvg() });
 
       //Formidable changes the name of the uploaded file
       //Rename the file to its original name
@@ -49,5 +53,17 @@ router.post('/upload', function(req, res, next) {
      
 
 });
+
+// function createSvg() {
+//   var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+//   var rect = document.createElementNS(svgNS,'rect');
+//   rect.setAttribute('x',5);
+//   rect.setAttribute('y',5);
+//   rect.setAttribute('width',500);
+//   rect.setAttribute('height',500);
+//   rect.setAttribute('fill','#95B3D7');
+//   svg.appendChild(rect);
+//   return svg;
+// }
 
 module.exports = router;
