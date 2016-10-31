@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p nog content
+  form(method="post", enctype="multipart\/form-data", action="/upload/")
+    fieldset
+      input(type="hidden", name="sid", value=sessionId)
+
+      p Image:
+          input(type="file", name="image")
+      p
+          input(type="submit", value="upload")
