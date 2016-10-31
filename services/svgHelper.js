@@ -1,11 +1,11 @@
 var svgHelper = function() {
     this.svg = '';
 
-    this.addLine = function() {
+    this.addLine = function(line) {
 
     }
 
-    this.addPath = function() {
+    this.addPath = function(path) {
         this.svg = this.svg + '<path d="M 100 350 q 150 -300 300 0" stroke="blue" stroke-width="5" fill="none" />';
     }
 

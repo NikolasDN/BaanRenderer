@@ -5,6 +5,7 @@ var fs = require('fs');
 var formidable = require("formidable");
 var util = require('util');
 var svgHelper = require('../services/svgHelper').svgHelper;
+var fileParser = require('../services/fileParser').fileParser;
 var router = express.Router();
 
 
@@ -16,8 +17,6 @@ router.get('/', function(req, res) {
 
 // upload posted file
 router.post('/upload', function(req, res, next) {
-
-    console.log('### Starting upload ');
 
     var form = new formidable.IncomingForm();
     //Formidable uploads to operating systems tmp dir by default
@@ -35,14 +34,17 @@ router.post('/upload', function(req, res, next) {
       console.log("file type: "+JSON.stringify(files.image.type));
       console.log("astModifiedDate: "+JSON.stringify(files.image.lastModifiedDate));
 
-      var helper = new svgHelper();
-      helper.addPath();
+      // var helper = new svgHelper();
+      // var path = {};
+      // helper.addPath(path);
 
-      // fs.readFile(files.image.path, function(err, content)
-      // {
-      //   res.render('index', { title: 'Express', svg: content });  
-      // });
-      res.render('index', { svg: helper.getSvg() });
+      fs.readFile(files.image.path, function(err, content)
+      {
+        //res.render('index', { title: 'Express', svg: content });
+        var parser = new fileParser();
+        parser.parseFile(content);
+      });
+      //res.render('index', { svg: helper.getSvg() });
 
       //Formidable changes the name of the uploaded file
       //Rename the file to its original name
