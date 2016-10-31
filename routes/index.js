@@ -11,7 +11,7 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express', svg: 'Nog geen baan gekozen' });
+  res.render('index', { svg: 'Nog geen baan gekozen' });
 });
 
 // upload posted file
@@ -42,7 +42,7 @@ router.post('/upload', function(req, res, next) {
       // {
       //   res.render('index', { title: 'Express', svg: content });  
       // });
-      res.render('index', { title: 'Express', svg: helper.getSvg() });
+      res.render('index', { svg: helper.getSvg() });
 
       //Formidable changes the name of the uploaded file
       //Rename the file to its original name
