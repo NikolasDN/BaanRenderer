@@ -42,9 +42,14 @@ router.post('/upload', function(req, res, next) {
       {
         //res.render('index', { title: 'Express', svg: content });
         var parser = new fileParser();
-        parser.parseFile(content);
+        result = parser.parseFile(content, (result) => {
+          res.render('index', { svg: result });
+        });
+
+        
       });
       //res.render('index', { svg: helper.getSvg() });
+      
 
       //Formidable changes the name of the uploaded file
       //Rename the file to its original name

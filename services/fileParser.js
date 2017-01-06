@@ -2,7 +2,7 @@ var binary = require("binary");
 
 var fileParser = function() {
     
-    this.parseFile = function(contents) {
+    this.parseFile = function(contents, callback) {
         // for(var i = 255; i < 1000; i++) {
         //     console.log(contents[i]);
         // }
@@ -10,6 +10,8 @@ var fileParser = function() {
         //     var hex = this.ua2hex(contents[i]);
         //     console.log(hex);
         // }
+
+        var result = contents;
         
         binary.parse(contents)
             .skip(256) //magic+size of header
@@ -41,7 +43,8 @@ var fileParser = function() {
           })
         })
       .tap(function(vars){
-        console.dir(vars)
+        console.dir(vars);
+        return callback(result);
       });
 
     }
