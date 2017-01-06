@@ -44,6 +44,10 @@ var fileParser = function() {
         })
       .tap(function(vars){
         console.dir(vars);
+
+        // for(var i = 0; i < result.length; i++) {
+        //     result[i] = result[i].toString("X2");
+        // }
         return callback(result);
       });
 
